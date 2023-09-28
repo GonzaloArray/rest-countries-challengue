@@ -15,7 +15,7 @@ export const Content: React.FC = () => {
 
   useEffect(() => {
     const getDataCountries = async () => {
-      const url = "https://rest-countries-react-1212.netlify.app/public/data.json";
+      const url = "/public/data.json";
       try {
         setLoading(true);
         const res = await fetch(url);
