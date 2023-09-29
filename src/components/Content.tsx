@@ -19,6 +19,7 @@ export const Content: React.FC = () => {
       try {
         setLoading(true);
         const res = await fetch(url);
+        console.log(res)
         if (!res.ok) {
           throw new Error("Network response was not ok");
         }
