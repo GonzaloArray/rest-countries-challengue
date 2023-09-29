@@ -1,40 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { Countries } from "../Interface.type";
 import { BorderCountries } from "../components/BorderCountries";
 import { Arrow } from "../icon/Arrow.icon";
 import { useDarkMode } from "../context/DarkModeProvider";
 
-export const Details: React.FC = () => {
-  const [country, setCountry] = useState<Countries | null>(null);
+import data from "../data.json";
 
+const CountriesFlag = data;
+
+export const Details: React.FC = () => {
   const { darkMode } = useDarkMode();
 
   const { id } = useParams();
 
-  useEffect(() => {
-    const getDataDetails = async () => {
-      const url = "/public/data.json";
-      try {
-        const res = await fetch(url);
-        if (res.ok) {
-          const data = await res.json();
-
-          const result = data.find((country: Countries) => country.cioc === id);
-          setCountry(result);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    return () => {
-      getDataDetails();
-    };
-  }, [id, country]);
+  const country = CountriesFlag.find((country) => country.cioc === id);
 
   return (
-    <div className="mt-10 h-screen">
+    <div className="mt-10 h-screen animate__animated animate__fadeIn">
       <div className="inline-block">
         <Link
           to="/"

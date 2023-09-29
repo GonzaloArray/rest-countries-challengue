@@ -5,9 +5,7 @@ import { Search } from "../icon/Search.icon";
 
 import data from "../data.json";
 
-
 const CountriesFlag = data;
-
 
 export const Content: React.FC = () => {
   const [search, setSearch] = useState({
@@ -37,7 +35,7 @@ export const Content: React.FC = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = searchCountry?.slice(indexOfFirstItem, 1);
+  const currentItems = searchCountry?.slice(indexOfFirstItem, indexOfLastItem);
 
   const maxPage = Math.ceil((searchCountry?.length || 0) / itemsPerPage);
 
@@ -51,6 +49,11 @@ export const Content: React.FC = () => {
     if (currentPage < maxPage) {
       setCurrentPage(currentPage + 1);
     }
+  };
+
+  const handleSelectOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearch({ ...search, option: e.target.value });
+    setCurrentPage(1);
   };
 
   console.log("content");
@@ -69,7 +72,7 @@ export const Content: React.FC = () => {
         </div>
         <select
           className="bg-gray-200 p-4 rounded-xl custom-select"
-          onChange={(e) => setSearch({ ...search, option: e.target.value })}
+          onChange={handleSelectOption}
           name=""
           id=""
         >
@@ -99,14 +102,22 @@ export const Content: React.FC = () => {
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
-          className="mr-2 px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md cursor-pointer"
+          className={`ml-2 px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-sm cursor-pointer ${
+            currentPage === 1
+              ? "bg-gray-100 dark:bg-gray-400"
+              : "hover:scale-105 transition-all"
+          }`}
         >
           Anterior
         </button>
         <button
           onClick={handleNextPage}
           disabled={currentPage === maxPage}
-          className="ml-2 px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md cursor-pointer"
+          className={`ml-2 px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-sm cursor-pointer ${
+            currentPage === maxPage
+              ? "bg-gray-100 dark:bg-gray-400"
+              : "hover:scale-105 transition-all"
+          }`}
         >
           Siguiente
         </button>

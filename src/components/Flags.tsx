@@ -16,7 +16,7 @@ export const Flags = ({ country }: Flag) => {
         <img
           src={country.flags.png}
           alt={country.name}
-          className="object-fill w-full h-full"
+          className="object-cover h-full w-full"
         />
       </div>
       <div className={`p-3 shadow-lg flex flex-col gap-6 mt-2 ${darkMode ? 'bg-gray-200':''}`}>
