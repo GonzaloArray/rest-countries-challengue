@@ -15,15 +15,15 @@ export const Content: React.FC = () => {
 
   useEffect(() => {
     const getDataCountries = async () => {
-      const url = "../dist/data.json";
+      const url = "/data.json"
       try {
         setLoading(true);
         const res = await fetch(url);
         if (!res.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
-          const data = await res.json();
-          setCountries(data);
+        const data = await res.json();
+        setCountries(data);
       } catch (error) {
         console.log(error);
       } finally {
