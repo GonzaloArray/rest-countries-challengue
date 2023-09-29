@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { Countries } from "../Interface.type";
 import { useDarkMode } from "../context/DarkModeProvider";
 
 interface Flag {
-  country: Countries;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  country: any;
 }
 
 export const Flags = ({ country }: Flag) => {

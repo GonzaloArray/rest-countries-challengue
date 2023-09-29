@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from "react";
-import { Countries, Region } from "../Interface.type";
+import { Region } from "../Interface.type";
 import { Flags } from "./Flags";
 import { Search } from "../icon/Search.icon";
 
 import data from "../data.json";
 
-const CountriesFlag = data.map((country: Countries) => country) as Countries[];
+
+const CountriesFlag = data;
 
 
 export const Content: React.FC = () => {
