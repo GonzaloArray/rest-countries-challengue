@@ -15,7 +15,7 @@ export const Content: React.FC = () => {
 
   useEffect(() => {
     const getDataCountries = async () => {
-      const url = "/data.json";
+      const url = "/dist/data.json";
       try {
         setLoading(true);
         const res = await fetch(url);
