@@ -18,7 +18,14 @@ export const Content: React.FC = () => {
       const url = "data/data.json";
       try {
         setLoading(true);
-        const res = await fetch(url);
+        const res = await fetch(url
+        ,{
+          headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+           }
+        }
+        );
         if (res.ok) {
           const data = await res.json();
           setCountries(data);
