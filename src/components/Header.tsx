@@ -11,7 +11,7 @@ export const Header = () => {
       }  md:px-0 border-b-2`}
     >
       <div className="flex justify-between items-center h-20 p-5 container mx-auto">
-        <h2 className="font-bold">Where in the world?</h2>
+        <h2 className="font-bold">Where in the world in the moment?</h2>
         <button onClick={toggleDarkMode} className="font-bold flex gap-2">
           <Moon />
           <span>Dark {darkMode ? "Claro" : "Oscuro"}</span>
