@@ -56,8 +56,6 @@ export const Content: React.FC = () => {
     setCurrentPage(1);
   };
 
-  console.log("content");
-
   return (
     <div className="flex-1 flex flex-col">
       <section className="py-10 flex justify-between items-center gap-3 flex-wrap mx-2 md:mx-0">
