@@ -15,7 +15,7 @@ export const Content: React.FC = () => {
 
   useEffect(() => {
     const getDataCountries = async () => {
-      const url = "/data.json";
+      const url = "./data.json";
       try {
         setLoading(true);
         const res = await fetch(url);
@@ -73,7 +73,7 @@ export const Content: React.FC = () => {
 
   return (
     <div className="flex-1 flex flex-col">
-      <section className="py-10 flex justify-between items-center">
+      <section className="py-10 flex justify-between items-center flex-wrap mx-2 md:mx-0">
         <div className="flex gap-3 bg-gray-200 p-4 rounded-sm w-2/5">
           <Search />
           <input
