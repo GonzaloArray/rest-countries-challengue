@@ -19,10 +19,11 @@ export const Content: React.FC = () => {
       try {
         setLoading(true);
         const res = await fetch(url);
-        if (res.ok) {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
           const data = await res.json();
           setCountries(data);
-        }
       } catch (error) {
         console.log(error);
       } finally {
