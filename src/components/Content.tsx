@@ -19,18 +19,12 @@ export const Content: React.FC = () => {
 
       try {
         setLoading(true);
-        const res = await fetch(url
-        ,{
-          headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-           }
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`Fetching ${url} failed`)
         }
-        );
-        if (res.ok) {
-          const data = await res.json();
-          setCountries(data);
-        }
+        const data = await res.json();
+        setCountries(data);
       } catch (error) {
         console.log(error);
       } finally {
@@ -78,6 +72,8 @@ export const Content: React.FC = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  console.log('content')
 
   return (
     <div className="flex-1 flex flex-col">
