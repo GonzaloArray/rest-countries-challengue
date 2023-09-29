@@ -14,7 +14,7 @@ export const Header = () => {
         <h2 className="font-bold">Where in the world?</h2>
         <button onClick={toggleDarkMode} className="font-bold flex gap-2 p-3 rounded-xl hover:bg-slate-200 transition-all w-[200px] justify-center">
           <Moon />
-          <span>Dark {darkMode ? "Claro" : "Oscuro"}</span>
+          <span>{darkMode ? "Ligth" : "Dark"} Mode</span>
         </button>
       </div>
     </header>
