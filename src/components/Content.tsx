@@ -44,7 +44,7 @@ export const Content: React.FC = () => {
       </section>
       {currentItems?.length === 0 && (
         <h2 className="text-4xl text-center font-bold">
-          No se encontraron paises
+          No countries found...
         </h2>
       )}
       <section
