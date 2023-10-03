@@ -1,60 +1,18 @@
-import React, { useMemo, useState } from "react";
 import { Region } from "../Interface.type";
 import { Flags } from "./Flags";
 import { Search } from "../icon/Search.icon";
-
-import data from "../data.json";
-
-const CountriesFlag = data;
+import { useFilterFlag } from "../hook/useFilterFlag";
 
 export const Content: React.FC = () => {
-  const [search, setSearch] = useState({
-    text: "",
-    option: "",
-  });
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-
-  const searchCountry = useMemo(() => {
-    if (search.option === "" && search.text === "") {
-      return CountriesFlag;
-    }
-    if (search.option === "" && search.text !== "") {
-      return CountriesFlag?.filter((country) =>
-        country.name.toLowerCase().includes(search.text.toLowerCase())
-      );
-    }
-    const dataFilter = CountriesFlag?.filter((country) =>
-      country.name.toLowerCase().includes(search.text.toLowerCase())
-    );
-
-    return dataFilter?.filter((country) =>
-      country.region.toLowerCase().includes(search.option.toLowerCase())
-    );
-  }, [search]);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = searchCountry?.slice(indexOfFirstItem, indexOfLastItem);
-
-  const maxPage = Math.ceil((searchCountry?.length || 0) / itemsPerPage);
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < maxPage) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handleSelectOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearch({ ...search, option: e.target.value });
-    setCurrentPage(1);
-  };
+  const {
+    maxPage,
+    currentPage,
+    currentItems,
+    handleInputText,
+    handleNextPage,
+    handlePreviousPage,
+    handleSelectOption,
+  } = useFilterFlag();
 
   return (
     <div className="flex-1 flex flex-col">
@@ -62,7 +20,7 @@ export const Content: React.FC = () => {
         <div className="flex gap-3 bg-gray-200 p-4 rounded-sm w-full md:w-2/5">
           <Search />
           <input
-            onChange={(e) => setSearch({ ...search, text: e.target.value })}
+            onChange={handleInputText}
             className="bg-gray-200 w-full outline-0"
             type="text"
             placeholder="Search for a country..."
